@@ -46,16 +46,12 @@ class Optimizer_1(Optimizer):
                 
                 # State initialization
                 if len(state) == 0:
-                    # Times step has been called. Used for bias correction.
-                    state['step'] = 0
                     # Exponential moving average of gradient values
                     state['exp_avg'] = grad.new().resize_as_(grad).zero_()
                 
                 exp_avg = state['exp_avg']
                 beta = group['beta']
-                
-                state['step'] += 1
-                
+                                
                 # Apply weight decay (L2 penalty)
                 if group['weight_decay'] != 0:
                     grad = grad.add(group['weight_decay'], p.data)
@@ -63,10 +59,7 @@ class Optimizer_1(Optimizer):
                 # Decay the momentum running average coefficient
                 exp_avg.mul_(beta).add_(1 - beta, grad)
                 
-                # Correct bias from early elements of the running average
-                avg_corr = exp_avg / (1 - beta ** state['step'])
-                
-                update = grad.mul(torch.exp(torch.sign(grad) * torch.sign(avg_corr)))
+                update = grad.mul(torch.exp(torch.sign(grad) * torch.sign(exp_avg)))
                 
                 p.data.add_(-group['lr'], update)
         return loss
