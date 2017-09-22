@@ -17,7 +17,7 @@ Import _PowerSign_ like any torch.optim Optimizer:
 ```python
 from powersign import PowerSign
 
-optimizer = Optimizer_1(model.parameters(), lr=1e-3, momentum=0.99)
+optimizer = PowerSign(model.parameters(), lr=1e-3, momentum=0.99)
 loss.backward()
 optimizer.step()
 ```
