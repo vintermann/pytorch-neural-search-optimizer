@@ -3,13 +3,13 @@ from torch.optim import Optimizer
 
 required = object()
 
-class Optimizer_1(Optimizer):
-    """Implements Neural Optimizer Search's Optimizer_1 for PyTorch
+class PowerSign(Optimizer):
+    """Implements PowerSign for PyTorch
     
     Proposed in 'Neural Optimizer Search with Reinforcement Learning' by 
     Irwan Bello, Barret Zoph, Vijay Vasudevan and Quoc Le
     
-    http://proceedings.mlr.press/v70/bello17a/bello17a.pdf
+    https://arxiv.org/abs/1709.07417
     
     Arguments:
       params (iterable): iterable of parameters to optimize or dicts defining
@@ -22,10 +22,10 @@ class Optimizer_1(Optimizer):
 
     def __init__(self, params, lr=1e-3, beta=0.9, weight_decay=0):
         defaults = dict(lr=lr, beta=beta, weight_decay=weight_decay)
-        super(Optimizer_1, self).__init__(params, defaults)
+        super(PowerSign, self).__init__(params, defaults)
 
     def __setstate__(self, state):
-        super(Optimizer_1, self).__setstate__(state)
+        super(PowerSign, self).__setstate__(state)
 
     def step(self, closure=None):
         """Performs a single optimization step.

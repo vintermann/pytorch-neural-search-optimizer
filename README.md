@@ -1,15 +1,21 @@
-# Neural Optimizer Search - Optimizer_1
+# PowerSign
 
-PyTorch implementation of Neural Optimizer Search's Optimizer_1. Based loosely on the implementation by David Dao, torch.optim.adam and one by Deepblue129. 
+PyTorch implementation of the PowerSign optimizer, as described in the paper
 
-<p align="center"><img src="imgs/optimizer_1.png" /></p>
+Neural Optimizer Search with Reinforcement Learning
+https://arxiv.org/abs/1709.07417
+
+by Google Brain researchers Irwan Bello, Barret Zoph, Vijay Vasudevan and Quoc V. Le.
+
+This is an independent pytorch implementation, based loosely on the implementation by David Dao, torch.optim.adam and 
+one by Deepblue129. 
 
 ## Usage
 
-Import _Optimizer_1_ like any torch.optim Optimizer:
+Import _PowerSign_ like any torch.optim Optimizer:
 
 ```python
-from optimizer_1 import Optimizer_1
+from powersign import PowerSign
 
 optimizer = Optimizer_1(model.parameters(), lr=1e-3, momentum=0.99)
 loss.backward()
